@@ -8,7 +8,7 @@ import { useEffect, useState } from "react"
 
 const longList: Item[] = [
     {
-        address: "ul. Długopolska 2137",
+        address: "ul. Długopolska 21",
         size: 3,
         price: 3,
         roomsCount: 3,
@@ -311,6 +311,7 @@ const longList: Item[] = [
 
 const shortList: Item[] = [
     {
+        imageUrl: "https://ireland.apollo.olxcdn.com/v1/files/8ewcj343c2rq-PL/image;s=1000x700",
         address: "string",
         size: 3,
         price: 3,
@@ -333,6 +334,7 @@ const shortList: Item[] = [
         url: "string"
     },
     {
+        imageUrl: "https://ireland.apollo.olxcdn.com/v1/files/tmy1n1pbzpf42-PL/image;s=1000x700",
         address: "string",
         size: 3,
         price: 3.5,
@@ -358,10 +360,14 @@ const shortList: Item[] = [
 
 function App() {
     const [entries, setEntries] = useState([]);
+    const [perPage, setPerPage] = useState(10);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [sortAsc, setSortAsc] = useState(false);
+    const [sortBy, setSortBy] = useState(null);
 
     useEffect(() => {
         // GET request using fetch inside useEffect React hook
-        fetch('http://192.168.123.62:3000/offers')
+        fetch('http://192.168.123.62:3000/offers?perPage=1000')
             .then(response => response.json())
             .then(data => setEntries(data.items));
     

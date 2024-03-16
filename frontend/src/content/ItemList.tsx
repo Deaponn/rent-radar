@@ -38,16 +38,21 @@ export default function ItemList({ itemList }: IItemListProps) {
                 <tbody>
                     {itemList.map(({ imageUrl, address, size, price, deposit, roomsCount, separateKitchen, heatingType, waterType, bathOrShower, url }) => (
                         <tr className="hover:bg-slate-800">
-                            <td className={`px-4 py-3 text-${address ? "lg" : "4xl"} text-white`}>{address || "🫥"}</td>
+                            <td className={`px-4 py-3 text-${imageUrl ? "lg" : "4xl"} text-white  min-w-40 min-h-32`}>
+                                {imageUrl ?
+                                    (
+                                        <img src={imageUrl} className="object-contain absolute"></img>
+                                    ) : "🫥"}
+                            </td>
                             <td className={`px-4 py-3 text-${address ? "lg" : "4xl"} text-white`}>{address || "🫥"}</td>
                             <td className={`px-4 py-3 text-${size ? "lg" : "4xl"} text-white`}>{size ? size + " m²" : "🫥"}</td>
                             <td className={`px-4 py-3 text-${price ? "lg" : "4xl"} text-white`}>{price ? price + " zł" : "🫥"}</td>
-                            <td className={`px-4 py-3 text-${price ? "lg" : "4xl"} text-white`}>{price ? price + " zł" : "🫥"}</td>
+                            <td className={`px-4 py-3 text-${deposit ? "lg" : "4xl"} text-white`}>{deposit ? deposit + " zł" : "🫥"}</td>
                             <td className={`px-4 py-3 text-${roomsCount ? "lg" : "4xl"} text-white`}>{roomsCount || "🫥"}</td>
                             <td className="px-4 py-3 text-4xl text-white">{separateKitchen != undefined ? (separateKitchen ? "✅" : "❌") : "🫥"}</td>
                             <td className={`px-4 py-3 text-${heatingType ? "lg" : "4xl"} text-white`}>{heatingType || "🫥"}</td>
                             <td className={`px-4 py-3 text-${waterType ? "lg" : "4xl"} text-white`}>{waterType || "🫥"}</td>
-                            <td className="px-4 py-3 text-4xl text-white">{bathOrShower != undefined ? (bathOrShower == "Wanna" ? "🛁" : "🚿") : "🫥"}</td>
+                            <td className="px-4 py-3 text-4xl text-white">{bathOrShower == "Wanna" ? "🛁" : (bathOrShower ? "🚿" : "🫥")}</td>
                             <td className="px-4 py-3 text-lg text-white">
                                 <a href={url} target="_blank">
                                     Przejdź do oferty
