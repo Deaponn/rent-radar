@@ -1,35 +1,388 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import Header from "./header/Header"
+import Content from "./content/Content"
+import Footer from "./footer/Footer"
+import { Item } from "./content/ItemList"
 import './App.css'
+import ItemList from "./content/ItemList"
+import { useEffect, useState } from "react"
+
+const longList: Item[] = [
+    {
+        address: "ul. Długopolska 21",
+        size: 3,
+        price: 3,
+        roomsCount: 3,
+        separateKitchen: true,
+        heatingType: "Inne",
+        waterType: "Gazowe",
+        bathOrShower: "Prysznic",
+        url: "https://www.wikipedia.org"
+    },
+    {
+        size: 3,
+        price: 3.5,
+        roomsCount: 3,
+        separateKitchen: false,
+        heatingType: "Elektryczne",
+        waterType: "Elektryczne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        price: 3,
+        roomsCount: 3,
+        separateKitchen: true,
+        heatingType: "Miejskie",
+        waterType: "Inne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        separateKitchen: false,
+        heatingType: "Elektryczne",
+        waterType: "Elektryczne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3,
+        roomsCount: 3,
+        heatingType: "Miejskie",
+        waterType: "Inne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3.5,
+        roomsCount: 3,
+        separateKitchen: false,
+        waterType: "Elektryczne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3,
+        roomsCount: 3,
+        separateKitchen: true,
+        heatingType: "Miejskie",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3.5,
+        roomsCount: 3,
+        separateKitchen: false,
+        heatingType: "Elektryczne",
+        waterType: "Elektryczne",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3,
+        roomsCount: 3,
+        separateKitchen: true,
+        heatingType: "Miejskie",
+        waterType: "Inne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3.5,
+        roomsCount: 3,
+        separateKitchen: false,
+        heatingType: "Elektryczne",
+        waterType: "Elektryczne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3,
+        roomsCount: 3,
+        separateKitchen: true,
+        heatingType: "Miejskie",
+        waterType: "Inne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3.5,
+        roomsCount: 3,
+        separateKitchen: false,
+        heatingType: "Elektryczne",
+        waterType: "Elektryczne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3,
+        roomsCount: 3,
+        separateKitchen: true,
+        heatingType: "Miejskie",
+        waterType: "Inne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3.5,
+        roomsCount: 3,
+        separateKitchen: false,
+        heatingType: "Elektryczne",
+        waterType: "Elektryczne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3,
+        roomsCount: 3,
+        separateKitchen: true,
+        heatingType: "Miejskie",
+        waterType: "Inne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3.5,
+        roomsCount: 3,
+        separateKitchen: false,
+        heatingType: "Elektryczne",
+        waterType: "Elektryczne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3,
+        roomsCount: 3,
+        separateKitchen: true,
+        heatingType: "Miejskie",
+        waterType: "Inne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3.5,
+        roomsCount: 3,
+        separateKitchen: false,
+        heatingType: "Elektryczne",
+        waterType: "Elektryczne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3,
+        roomsCount: 3,
+        separateKitchen: true,
+        heatingType: "Miejskie",
+        waterType: "Inne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3.5,
+        roomsCount: 3,
+        separateKitchen: false,
+        heatingType: "Elektryczne",
+        waterType: "Elektryczne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3,
+        roomsCount: 3,
+        separateKitchen: true,
+        heatingType: "Miejskie",
+        waterType: "Inne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3.5,
+        roomsCount: 3,
+        separateKitchen: false,
+        heatingType: "Elektryczne",
+        waterType: "Elektryczne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3,
+        roomsCount: 3,
+        separateKitchen: true,
+        heatingType: "Miejskie",
+        waterType: "Inne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3.5,
+        roomsCount: 3,
+        separateKitchen: false,
+        heatingType: "Elektryczne",
+        waterType: "Elektryczne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3,
+        roomsCount: 3,
+        separateKitchen: true,
+        heatingType: "Miejskie",
+        waterType: "Inne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3.5,
+        roomsCount: 3,
+        separateKitchen: false,
+        heatingType: "Elektryczne",
+        waterType: "Elektryczne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3,
+        roomsCount: 3,
+        separateKitchen: true,
+        heatingType: "Miejskie",
+        waterType: "Inne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3,
+        roomsCount: 3,
+        separateKitchen: true,
+        heatingType: "Miejskie",
+        waterType: "Miejskie",
+        bathOrShower: "Prysznic",
+        url: "string"
+    }
+]
+
+const shortList: Item[] = [
+    {
+        imageUrl: "https://ireland.apollo.olxcdn.com/v1/files/8ewcj343c2rq-PL/image;s=1000x700",
+        address: "string",
+        size: 3,
+        price: 3,
+        roomsCount: 3,
+        separateKitchen: true,
+        heatingType: "Inne",
+        waterType: "Gazowe",
+        bathOrShower: "Prysznic",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3.5,
+        roomsCount: 3,
+        separateKitchen: false,
+        heatingType: "Elektryczne",
+        waterType: "Elektryczne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        imageUrl: "https://ireland.apollo.olxcdn.com/v1/files/tmy1n1pbzpf42-PL/image;s=1000x700",
+        address: "string",
+        size: 3,
+        price: 3.5,
+        roomsCount: 3,
+        separateKitchen: false,
+        heatingType: "Elektryczne",
+        waterType: "Elektryczne",
+        bathOrShower: "Wanna",
+        url: "string"
+    },
+    {
+        address: "string",
+        size: 3,
+        price: 3,
+        roomsCount: 3,
+        separateKitchen: true,
+        heatingType: "Miejskie",
+        waterType: "Miejskie",
+        bathOrShower: "Prysznic",
+        url: "string"
+    }
+]
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [entries, setEntries] = useState([]);
+    const [perPage, setPerPage] = useState(10);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [sortAsc, setSortAsc] = useState(false);
+    const [sortBy, setSortBy] = useState(null);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    useEffect(() => {
+        // GET request using fetch inside useEffect React hook
+        fetch('http://192.168.123.62:3000/offers?perPage=1000')
+            .then(response => response.json())
+            .then(data => setEntries(data.items));
+    
+    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+    }, []);
+
+    return (
+        <>
+            <Header></Header>
+            <Content>
+                <ItemList itemList={entries} />
+            </Content>
+            <Footer></Footer>
+        </>
+    )
 }
 
 export default App
