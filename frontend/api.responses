@@ -1,0 +1,14 @@
+GET /offers
+    ?perPage=(int) - Ilość ofert na stronie
+    &page=(int) - Numer strony
+    &sortBy=(string) - Po czym sortować, można: size, price, roomsCount
+    &sort=(string) - asc lub desc
+
+    parametry nie są wymagane domyślnie jest: 
+    perPage = 5, 
+    page = 1, 
+    sort = 'asc', 
+    sortBy - jeśli nie ma nic to jest po koejności dodania do bazy danych
+
+    (200) {"items": [{ oferta1 }, ...], "totalCount": (int)} - Zwraca produkty
+    (500) { message: 'Internal Server Error' } - Błąd przy pobieraniu z bazy
