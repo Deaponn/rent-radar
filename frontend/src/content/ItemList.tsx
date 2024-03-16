@@ -13,10 +13,13 @@ export type Item = {
 }
 
 interface IItemListProps {
-    itemList: Item[]
+    itemList: Item[];
+    sortAsc: boolean;
+    sortBy?: "size" | "price" | "roomsCount";
+    toggleSort: (newSortBy: "size" | "price" | "roomsCount") => void;
 }
 
-export default function ItemList({ itemList }: IItemListProps) {
+export default function ItemList({ itemList, sortAsc, sortBy, toggleSort }: IItemListProps) {
     return (
         <>
             <table className="table-auto w-full text-left whitespace-no-wrap">
@@ -24,10 +27,16 @@ export default function ItemList({ itemList }: IItemListProps) {
                     <tr>
                         <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 rounded-tl rounded-bl">Zdjęcie</th>
                         <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Adres</th>
-                        <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Powierzchnia</th>
-                        <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Cena</th>
+                        <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800"
+                            onClick={() => toggleSort("size")}
+                        >Powierzchnia {(sortBy == "size" && (sortAsc ? "👇" : "☝️")) || "🔀"}</th>
+                        <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800"
+                            onClick={() => toggleSort("price")}
+                        >Cena {(sortBy == "price" && (sortAsc ? "👇" : "☝️")) || "🔀"}</th>
                         <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Kaucja</th>
-                        <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Liczba pokoi</th>
+                        <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800"
+                            onClick={() => toggleSort("roomsCount")}
+                        >Liczba pokoi {(sortBy == "roomsCount" && (sortAsc ? "👇" : "☝️")) || "🔀"}</th>
                         <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Osobna kuchnia</th>
                         <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Ogrzewanie</th>
                         <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Woda</th>
@@ -38,10 +47,10 @@ export default function ItemList({ itemList }: IItemListProps) {
                 <tbody>
                     {itemList.map(({ imageUrl, address, size, price, deposit, roomsCount, separateKitchen, heatingType, waterType, bathOrShower, url }) => (
                         <tr className="hover:bg-slate-800">
-                            <td className={`px-4 py-3 text-${imageUrl ? "lg" : "4xl"} text-white  min-w-40 min-h-32`}>
+                            <td className={`px-4 py-3 text-${imageUrl ? "lg" : "4xl"} text-white`}>
                                 {imageUrl ?
                                     (
-                                        <img src={imageUrl} className="object-contain absolute"></img>
+                                        <img src={imageUrl} className="object-contain max-w-40 max-h-32"></img>
                                     ) : "🫥"}
                             </td>
                             <td className={`px-4 py-3 text-${address ? "lg" : "4xl"} text-white`}>{address || "🫥"}</td>
