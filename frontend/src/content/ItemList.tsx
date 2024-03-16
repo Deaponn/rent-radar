@@ -3,7 +3,7 @@ export type Item = {
     address?: string;
     size?: number;
     price?: number;
-    deposit?: number;
+    deposit?: string;
     roomsCount?: number;
     separateKitchen?: boolean;
     heatingType?: "Gazowe" | "Elektryczne" | "Miejskie" | "Inne";
@@ -29,14 +29,14 @@ export default function ItemList({ itemList, sortAsc, sortBy, toggleSort }: IIte
                         <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Adres</th>
                         <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800"
                             onClick={() => toggleSort("size")}
-                        >Powierzchnia {(sortBy == "size" && (sortAsc ? "👇" : "☝️")) || "🔀"}</th>
+                        >Powierzchnia {(sortBy == "size" && (!sortAsc ? "👇" : "☝️")) || "🔀"}</th>
                         <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800"
                             onClick={() => toggleSort("price")}
-                        >Cena {(sortBy == "price" && (sortAsc ? "👇" : "☝️")) || "🔀"}</th>
+                        >Cena {(sortBy == "price" && (!sortAsc ? "👇" : "☝️")) || "🔀"}</th>
                         <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Kaucja</th>
                         <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800"
                             onClick={() => toggleSort("roomsCount")}
-                        >Liczba pokoi {(sortBy == "roomsCount" && (sortAsc ? "👇" : "☝️")) || "🔀"}</th>
+                        >Liczba pokoi {(sortBy == "roomsCount" && (!sortAsc ? "👇" : "☝️")) || "🔀"}</th>
                         <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Osobna kuchnia</th>
                         <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Ogrzewanie</th>
                         <th className="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Woda</th>
